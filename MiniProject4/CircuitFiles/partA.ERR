@@ -1,0 +1,32 @@
+Note: starting Gmin stepping
+Note: One successful Gmin step
+Note: One successful Gmin step
+Warning: Gmin step failed
+Warning: Gmin stepping failed
+Note: starting source stepping
+Note: One successful source step
+Warning: source stepping failed
+Note: starting Gmin stepping
+Note: One successful Gmin step
+Note: One successful Gmin step
+Note: One successful Gmin step
+Note: One successful Gmin step
+Note: One successful Gmin step
+Note: One successful Gmin step
+Warning: Gmin step failed
+Warning: Gmin stepping failed
+Note: starting source stepping
+Warning: singular matrix:  check nodes 12 and 53:xu2
+
+Warning: source stepping failed
+doAnalyses: Matrix is singular
+
+run simulation(s) aborted
+Circuit: *Spice netlist for Circuit: C:\Users\mtale\OneDrive\Desktop\ELEC301\Mini_Projects\MiniProject4\CircuitFiles\partA.CKT
+Date: Sat Dec 03 14:47:18  2022
+
+
+
+Total elapsed time: 0.040 seconds.
+
+
