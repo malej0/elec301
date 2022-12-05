@@ -130,19 +130,86 @@ We can see from the plot that when the oscillations occour, $A_M$ is greater tha
 unstable as shown in Figure \ref{fig:unstablerootlocus}, since the poles are on the right side on the $jw$ axis. When the
 poles are on the other side of the $jw$ axis, the system is stable, and doesn't cause the output to oscillate. This happens
 when $A_M<3$. The reason why it has to be less than 3 for the system to be stable is because of the characteristic equation in the transfer function. 
-If $A_M$ is greater than 3, it causes one of the coefficients in the characteristic equation to be negative, causing instability
+If $A_M$ is equal or greater than 3, it causes one of the coefficients in the characteristic equation to be negative, causing instability
 in the system and thus, the oscillations occour.
 
 \section{Part B}
+Below is our phase shift oscillator circuit:
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.2\textwidth]{Images/phaseoscillatorcircuit.png}\\
+    \caption{Phase Shift Oscillator Circuit}
+    \label{fig:oscillatorcircuit}
+\end{figure}
+\FloatBarrier
 
+To find the proper value of the 29R resistor, we will simulate the output response for a very large amount of time (in this case, 1000 seconds
+was used). Simulating with just $29k\Omega$ we find that the output amplitude eventually decays to zero. Increasing the resistor
+to $29.1k\Omega$ makes the output amplitude to be sustained indefinitely. 
 
+Plotting the output of the circuit with the values given in the project document [2] and the increased 29R resistor , we find that 
+the output oscillates as shown: 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/partbtransient1x.png}\\
+    \caption{Circuit Output With Unchanged Circuit Elements}
+    \label{fig:oscillatorcircuit1x}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/partbtransient0.5x.png}\\
+    \caption{Circuit Output With Half Circuit Elements}
+    \label{fig:oscillatorcircuit1x}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/partbtransient2x.png}\\
+    \caption{Circuit Output With Double Circuit Elements}
+    \label{fig:oscillatorcircuit1x}
+\end{figure}
+From class notes[1], we can calculate the output frequency with:
+\begin{flalign}
+    &f=\frac{1}{2\pi RC \sqrt{6}} \nonumber
+\end{flalign} 
 
+Comparing the calculated and measured frequencies for each modified circuit:
+
+\begin{table}[]
+    \centering
+    \resizebox{0.5\textwidth}{!}{%
+    \begin{tabular}{l|l|l|l}
+    
+    R and C Multiplier & 0.5x & 1x & 2x \\ \cline{1-4}
+    Calculated $f_o(Hz)$ & 259.899 & 64.975 & 16.244 \\ \cline{1-4}
+    Measured $f_o(Hz)$ & 259.067 & 64.872 & 16.221 \\ \cline{1-4}
+    \% Error & 0.32 & 0.15 & 0.14
+    \end{tabular}%
+    }
+    \caption{Calculated and Measured Frequencies}
+    \label{CalculatedMeasuredFrequencies}
+\end{table}
+\FloatBarrier
+We can observe that the calculated and measured values are very close to each other.
 
 \section{Part C}
+Below is our Feedback Circuit:
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.3\textwidth]{Images/partCcircuit.png}\\
+    \caption{Feedback Circuit}
+    \label{fig:feedbackcircuit}
+\end{figure}
 
+Since we want to find the value of $R_{B2}$ that creates the largest open-loop gain at 1kHz, we will be setting our
+input voltage at 1kHz at 1mV. To find the value, we will be doing a parameter sweep with a transient response to 
+find which resistance value results in the largest gain. 
+
+
+
+\newpage
 \section{Appendix}
 \begin{flalign}
     &k = 3 - \sqrt(2)\\
