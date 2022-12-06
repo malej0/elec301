@@ -198,14 +198,79 @@ We can observe that the calculated and measured values are very close to each ot
 Below is our Feedback Circuit:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/partCcircuit.png}\\
+    \includegraphics[height=0.25\textwidth]{Images/partCcircuit.png}\\
     \caption{Feedback Circuit}
     \label{fig:feedbackcircuit}
 \end{figure}
 
 Since we want to find the value of $R_{B2}$ that creates the largest open-loop gain at 1kHz, we will be setting our
 input voltage at 1kHz at 1mV. To find the value, we will be doing a parameter sweep with a transient response to 
-find which resistance value results in the largest gain. 
+find which resistance value results in the largest gain. We find that after doing the parameter sweep,
+the value $R_{B2}$ to be around \boxed{20k\Omega}. Resistance values above $20k\Omega$
+, we find that the output amplitude decreases. The paramater sweep is shown below:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/parametersweep.png}\\
+    \caption{Parameter Sweep with $R_{B2}$ and Transient Response}
+    \label{fig:parametersweep}
+\end{figure}
+
+
+\subsection{Part 1}
+To measure the DC Operating points, we will be using the DC Circuit below:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.25\textwidth]{Images/partCDC.png}\\
+    \caption{Feedback DC Circuit}
+    \label{fig:feedbacdccircuit}
+\end{figure}
+\FloatBarrier
+For this project, we will be assuming that $V_T$= 0.025V. We can use these formulas to 
+calculate our transistor parameters:
+\begin{center}
+    $r_\pi= \frac{V_T}{I_B}$ ,$\beta = \frac{I_C}{I_B}$ and $g_m = \frac{\beta}{r_\pi}$
+\end{center}
+Here are the DC Operating points, with our measured $r_\pi,g_m$, and $h_{FE}$:
+\FloatBarrier
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l|lllllllll}
+     & $I_C$ & $I_B$ & $I_E$ & $V_C$ & $V_B$ & $V_E$ & $g_m$ & $r_\pi$ & $h_{FE}$ \\ \cline{1-10}
+    Q1 & 1.29mA & 10.8uA & 1.31mA & 1.90V & 0.654V & 0V & 0.05 & 2.315k$\Omega$ & 119  \\ \cline{1-10}
+    Q2 & 2.19mA & 15.4uA & 2.21mA & 15V & 1.90V & 1.23V & 0.09 & 1.623k$\Omega$ & 142
+    \end{tabular}%
+    \caption{DC Operating Points}
+    \label{DC Operating Points}
+\end{table}
+
+\subsection{Part 2}
+Here is the open loop frequency response plot:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.39\textwidth]{Images/partCbode.png}\\
+    \caption{Open Loop Frequency Response}
+    \label{fig:olfreqresponse}
+\end{figure}
+Measuring with the cursors in our simulation software, we find that the 
+3dB points are: 
+\begin{center}
+    \boxed{w_{L3dB} = 2.9219 *2\pi [\frac{rad}{s}], w_{H3dB} = 91.3083*2\pi*10^3[\frac{rad}{s}] } 
+\end{center}
+We can also find our mid-band gain \boxed{A_m = 127.557\frac{V}{V}}.
+In order to find the input and output resistance at 1kHz, we will be measuring the voltage 
+and current at the input and output. We will measure the short circuit current and open circuit 
+voltage for the output impedance. After measuring, we find: 
+\begin{center}
+$R_{in} = \frac{240\mu V}{93.4nA}$ = \boxed{2.569k\Omega}, 
+$R_{out} = \frac{1.24V}{1.39mA} = $ \boxed{892.1\Omega}
+\end{center}
+
+
+
+
+
+
 
 
 
