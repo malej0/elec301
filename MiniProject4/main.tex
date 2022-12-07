@@ -245,13 +245,15 @@ Here are the DC Operating points, with our measured $r_\pi,g_m$, and $h_{FE}$:
 \end{table}
 
 \subsection{Part 2}
+\subsubsection{Finding Measured Open Loop Frequency Responce and I/O Impedance}
 Here is the open loop frequency response plot:
 \begin{figure}[h!]
     \centering
-    \includegraphics[height=0.39\textwidth]{Images/partCbode.png}\\
+    \includegraphics[height=0.35\textwidth]{Images/partCbode.png}\\
     \caption{Open Loop Frequency Response}
     \label{fig:olfreqresponse}
 \end{figure}
+\FloatBarrier
 Measuring with the cursors in our simulation software, we find that the 
 3dB points are: 
 \begin{center}
@@ -259,25 +261,84 @@ Measuring with the cursors in our simulation software, we find that the
 \end{center}
 We can also find our mid-band gain \boxed{A_m = 127.557\frac{V}{V}}.
 In order to find the input and output resistance at 1kHz, we will be measuring the voltage 
-and current at the input and output. We will measure the short circuit current and open circuit 
-voltage for the output impedance. After measuring, we find: 
+and current at the input, and we will be adding a test source at the output and grounding the
+input for the output impedance measurements. After measuring, we find: 
 \begin{center}
 $R_{in} = \frac{240\mu V}{93.4nA}$ = \boxed{2.569k\Omega}, 
-$R_{out} = \frac{1.24V}{1.39mA} = $ \boxed{892.1\Omega}
+$R_{out} = \frac{707\mu V}{11.4 \mu A} = $ \boxed{62.017\Omega}
 \end{center}
 
+\subsubsection{Predicted Closed Loop Frequency Response}
+For this section, we will need to calculate our circuit parameters and input and 
+output resistance at 1kHz with $R_f=100k\Omega$. To do this, we need to know our circuit's 
+topology. Since the output is sampled by $R_f$ and mixes the current from the output into the
+input, we can determine that our feedback circuit uses shunt-shunt topology. Due to this,
+we will be using y-parameters to perform our calculations. Below is the y-parameter matrix
+we will be using:
+\begin{center}
+$\begin{bmatrix}
+        I_1 \\
+        I_2
+\end{bmatrix}$ =
+$\begin{bmatrix}
+    V_{1} \\
+    V_{2}  
+\end{bmatrix}$ 
+$\begin{bmatrix}
+    y_{11} && y_{12} \\
+    y_{21} && y_{22} 
+\end{bmatrix}$
+\end{center}
+\subsubsection{Gain Calculations}
+Since our circuit is in shunt-shunt topology, our open-loop will be  $\frac{V_{out}}
+{I_{in}}$. Therefore, we need to convert our input to the amplifier from a voltage source 
+to a current source. To do this, we will be transforming our source from a voltage source 
+in series with our source resistance to a current source in parallel to our source resistance. 
+Doing this, our resulting input current is \boxed{I_{in} = \frac{V_s}{5k\Omega}}. So we find
+our open loop gain to be:
+\begin{flalign}
+    &A^{'}= \frac{V_{out}}{I_{in}} = \frac{V_{out}}{\frac{V_s}{5k\Omega}}  = \frac{V_{out}}
+    {V_{s}}(5k\Omega) = 127.557\frac{V}{V}*(5k\Omega) = \boxed{637.786k\frac{V}{A}} \nonumber
+\end{flalign}
+
+Now, we are able to find our gain with feedback. The formula used
+can be found in the class notes[1]. It is found as:
+\begin{flalign}
+&A_f = \frac{A^{'}}{1+\beta A^{'}} = 86.446k\frac{V}{A} \nonumber
+\end{flalign}
+Since the units we need is $\frac{V}{V}$ we convert our input to a voltage source,
+and this can be done by dividing $A_f$ by $5k\Omega$. After doing this, we find
+\boxed{A_f = 17.289 \frac{V}{V}}. Which is our closed loop gain.
+
+\subsubsection{3dB Calculations}
+To calculate the $w_{3dBf}$ (3dB frequencies with feedback), we can use the 
+following formulas from the class notes[1]. The frequencies are found to be:
+\begin{flalign}
+&w_{Hf3dB} = w_{H3dB}(1+A^{'}\beta)  = 91.3083*2\pi*10^3*(1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})) = \boxed{366.476M \frac{rad}{s}}\nonumber\\
+&w_{Lf3dB} = \frac{w_{L3dB}}{1+A^{'}\beta} = \frac{2.9219 *2\pi}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =\boxed{2.488 \frac{rad}{s}} \nonumber
+\end{flalign}
+
+\subsubsection{Input and Output Resistance Calculations}
+To calculate our input and output resitance values with feedback, we can 
+use our open loop resistance values and formulas[1] to calculate the values
+we eventually find:
+\begin{flalign}
+&R_{if} = R_{in}(1+A^{'}\beta) = 2.569k\Omega(1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})) =\boxed {18.95372234k\Omega}\nonumber \\
+&R_{of} = \frac{R_{out}}{1+A^{'}\beta} = \frac{62.017\Omega}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =  
+\boxed{8.406\Omega}\nonumber
+\end{flalign}
+
+Here is our closed loop frequency response curve:
 
 
 
-
-
-
+\subsection{Part 3}
 
 
 \newpage
 \section{Appendix}
 \begin{flalign}
-    &k = 3 - \sqrt(2)\\
+    &k = 3 - \sqrt{2}\\
 \end{flalign}
 \section{References}
 1. ELEC 301 Class notes 
