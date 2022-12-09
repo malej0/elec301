@@ -51,7 +51,8 @@
 
 
 \section{Introduction}
-For this project, we will be using Multisim to simulate active filters and oscillators.
+For this project, we will be using Multisim to simulate an active filter, a phase shift oscillator, and a feedback circuit. 
+We will also be comparing measured and calculated values on all three circuits. 
 \section{Part A}
 \subsubsection{Part 1}
 For this part, we will be designing a 2nd order Butterworth low pass active filter using the UA741 operational amplifier. 
@@ -410,8 +411,13 @@ at 1kHz, we will be using the same method as done previously to measure each of 
 To find the calculated values of the input and output resistance for each $R_f$, we 
 will be using the calculated values of $\beta$ for the corresponding $R_f$ value. We 
 will be using the same formula as done previously to find the measured and calculated
-values of $R_{of}$ and $R_{if}$.
-
+values of $R_{of}$ and $R_{if}$. For the ``amount of feedback'', we will be abbreviating it on our table as ``A.o.F.''. 
+To calculate it, we will be using 1+$A'\beta$. This is because this is the way that feedback is accounted for in the 
+calculations for the input and output resistance calculations as shown below:
+\begin{center}
+$R_{of/if}=\frac{R_{in/out}}{1+A'\beta}$
+\end{center}
+Therfore the ``amount of feedback is calculated by the denominator of the above equation.''
 The measured values are shown below:
 
 \begin{table}[h!]
@@ -420,14 +426,36 @@ The measured values are shown below:
     
     $R_f (\Omega)$ & Measured  $R_{if}(\Omega)$ & Measured $R_{of}(\Omega)$ & Calculated $R_{if}(\Omega)$ & Calculated  $R_{of}(\Omega)$ \\ \cline{1-5}
     10k & 26.763 & 1.117 & 39.658 & 0.957 \\ 
-    100k & 266.393 & 8.457 & 348.204 & 8.406 \\
-    1M & 2.663k & 37.606 & 1.568k & 37.866
+    100k & 266.393 & 8.457 & 348.204 & 8.406  \\
+    1M & 2.663k & 37.606 & 1.568k & 37.866 
     \end{tabular}
     \caption{Measured and Calculated $R_{of}$ and $R_{if}$ Values}
-    \label{measuredcalcrifrof}
+    \label{tab:measuredcalcrifrof}
 \end{table}
 
-We can see from the table above that the measured and calculated values of $R_{of}$ 
+For the estimated value, we will be using the measured values from Table \ref{tab:measuredcalcrifrof}. For the predicted 
+values, we will be calculating it with the $\beta$ and $A'$ values that we already know (values from parts 2 and 3).
+
+Amount of feedback measured and calculated values:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+   
+    $R_f(\Omega)$ & \begin{tabular}[c]{@{}l@{}}Predicted\\ A.o.F.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Measured \\ A.o.F\end{tabular} \\ \cline{1-3}
+    10k & 64.779 & 95.991 \\ 
+    100k & 7.37786 & 9.644 \\
+    1M & 1.634 & 0.965
+    \end{tabular}
+    \caption{Measured and Predicted ``Amount of Feedback''}
+    \label{aof}
+\end{table}
+
+We can see that comparing the A.o.F. between the measured and the predicted values, they are more accurate to each other
+as we increase the $R_f$ value. We can determine that because we can see that the differences between the measured and
+predicted continue to decrease as $R_f$ increases. 
+
+We can also see from table \ref{tab:measuredcalcrifrof}  that the measured and calculated values of $R_{of}$ 
 are very accurate to the measured value. However, we can see that the input impedance
 calculations are not as accurate to the measured values. This could also be due to 
 inaccuracies in the simulation, or assumptions in the calculation.
