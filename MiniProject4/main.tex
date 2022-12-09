@@ -74,7 +74,7 @@ Below is the phase and magnitude plot for our filter:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.4\textwidth]{Images/magnitude_plot.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/magnitude_plot.png}\\
     \caption{Bode Magnitude Plot}
     \label{fig:magntitudeplot}
 \end{figure}
@@ -82,7 +82,7 @@ Below is the phase and magnitude plot for our filter:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.4\textwidth]{Images/phase_plot.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/phase_plot.png}\\
     \caption{Bode Phase Plot}
     \label{fig:phaseplot}
 \end{figure}
@@ -100,7 +100,7 @@ Changing the values of the resistances, we find that the oscillations occour whe
 The oscillation is shown below:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.32\textwidth]{Images/partatransient.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/partatransient.png}\\
     \caption{Oscillating Output}
     \label{fig:oscillatingoutput}
 \end{figure}
@@ -137,7 +137,7 @@ in the system and thus, the oscillations occour.
 Below is our phase shift oscillator circuit:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.2\textwidth]{Images/phaseoscillatorcircuit.png}\\
+    \includegraphics[height=0.3\textwidth]{Images/phaseoscillatorcircuit.png}\\
     \caption{Phase Shift Oscillator Circuit}
     \label{fig:oscillatorcircuit}
 \end{figure}
@@ -161,14 +161,14 @@ the output oscillates as shown:
     \centering
     \includegraphics[height=0.3\textwidth]{Images/partbtransient0.5x.png}\\
     \caption{Circuit Output With Half Circuit Elements}
-    \label{fig:oscillatorcircuit1x}
+    \label{fig:oscillatorcircuit0.5x}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.3\textwidth]{Images/partbtransient2x.png}\\
     \caption{Circuit Output With Double Circuit Elements}
-    \label{fig:oscillatorcircuit1x}
+    \label{fig:oscillatorcircuit2x}
 \end{figure}
 From class notes[1], we can calculate the output frequency with:
 \begin{flalign}
@@ -198,7 +198,7 @@ We can observe that the calculated and measured values are very close to each ot
 Below is our Feedback Circuit:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.25\textwidth]{Images/partCcircuit.png}\\
+    \includegraphics[height=0.3\textwidth]{Images/partCcircuit.png}\\
     \caption{Feedback Circuit}
     \label{fig:feedbackcircuit}
 \end{figure}
@@ -259,7 +259,8 @@ Measuring with the cursors in our simulation software, we find that the
 \begin{center}
     \boxed{w_{L3dB} = 2.9219 *2\pi [\frac{rad}{s}], w_{H3dB} = 91.3083*2\pi*10^3[\frac{rad}{s}] } 
 \end{center}
-We can also find our mid-band gain \boxed{A_m = 127.557\frac{V}{V}}.
+We can also find our mid-band gain \boxed{A_m = -127.557\frac{V}{V}} from the frequency 
+response plot.
 In order to find the input and output resistance at 1kHz, we will be measuring the voltage 
 and current at the input, and we will be adding a test source at the output and grounding the
 input for the output impedance measurements. After measuring, we find: 
@@ -289,9 +290,11 @@ $\begin{bmatrix}
     y_{21} && y_{22} 
 \end{bmatrix}$
 \end{center}
-
-In this case, we only need our $\beta$ value from our y-parameters, therefore we can just
-solve for that value
+To find the value of $y_{11}$, we set $V_2=0$. Then, we find that \boxed{y_11=\frac{1}{R_f}}
+for our $y_{12}$ parameter, we set $V_1=0$. We also know that $\beta=y_{12}$. It is found as
+\boxed{y_{12}=\beta=\frac{-1}{R_f}}.For $y{21}$, we find that it's effect is small compared
+relative to the other gain values, so we will not consider it in calculations. For $y_{22}$, we 
+set $V_1=0$ and find that \boxed{y_{22} = \frac{1}{R_f}}.
 \subsubsection{Gain Calculations}
 Since our circuit is in shunt-shunt topology, our open-loop will be  $\frac{V_{out}}
 {I_{in}}$. Therefore, we need to convert our input to the amplifier from a voltage source 
@@ -301,24 +304,24 @@ Doing this, our resulting input current is \boxed{I_{in} = \frac{V_s}{5k\Omega}}
 our open loop gain to be:
 \begin{flalign}
     &A^{'}= \frac{V_{out}}{I_{in}} = \frac{V_{out}}{\frac{V_s}{5k\Omega}}  = \frac{V_{out}}
-    {V_{s}}(5k\Omega) = 127.557\frac{V}{V}*(5k\Omega) = \boxed{637.786k\frac{V}{A}} \nonumber
+    {V_{s}}(5k\Omega) = -127.557\frac{V}{V}*(5k\Omega) = \boxed{-637.786k\frac{V}{A}} \nonumber
 \end{flalign}
 
 Now, we are able to find our gain with feedback. The formula used
 can be found in the class notes[1]. It is found as:
 \begin{flalign}
-&A_f = \frac{A^{'}}{1+\beta A^{'}} = 86.446k\frac{V}{A} \nonumber
+&A_f = \frac{A^{'}}{1+\beta A^{'}} = -86.446k\frac{V}{A} \nonumber
 \end{flalign}
 Since the units we need is $\frac{V}{V}$ we convert our input to a voltage source,
 and this can be done by dividing $A_f$ by $5k\Omega$. After doing this, we find
-\boxed{A_f = 17.289 \frac{V}{V}}. Which is our closed loop gain.
+\boxed{A = -17.289 \frac{V}{V}}. Which is our closed loop gain.
 
 \subsubsection{3dB Calculations}
 To calculate the $w_{3dBf}$ (3dB frequencies with feedback), we can use the 
 following formulas from the class notes[1]. The frequencies are found to be:
 \begin{flalign}
-&w_{Hf3dB} = (w_{H3dB})(1+A^{'}\beta) = (91.308k*2\pi)(1+\frac{1}{100k\Omega}637.786k\frac{V}{A}) = \boxed{ 4233.189k \frac{rad}{s}}\nonumber\\
-&w_{Lf3dB} = \frac{w_{L3dB}}{1+A^{'}\beta} = \frac{2.9219 *2\pi}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =\boxed{2.488 \frac{rad}{s}} \nonumber
+&w_{Hf3dB} = (w_{H3dB})(1+A^{'}\beta) = (91.308k*2\pi)(1+\frac{-1}{100k\Omega}*-637.786k\frac{V}{A}) = \boxed{ 4233.189k \frac{rad}{s}}\nonumber\\
+&w_{Lf3dB} = \frac{w_{L3dB}}{1+A^{'}\beta} = \frac{2.9219 *2\pi}{1+\frac{-1}{100k\Omega}(-637.786k\frac{V}{A})} =\boxed{2.488 \frac{rad}{s}} \nonumber
 \end{flalign}
 
 \subsubsection{Input and Output Resistance Calculations}
@@ -326,8 +329,8 @@ To calculate our input and output resitance values with feedback, we can
 use our open loop resistance values and formulas[1] to calculate the values
 we eventually find:
 \begin{flalign}
-&R_{if} =  \frac{R_{in}}{1+A^{'}\beta} = \frac{2.569k\Omega}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =\boxed {348.204\Omega}\nonumber \\
-&R_{of} = \frac{R_{out}}{1+A^{'}\beta} = \frac{62.017\Omega}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =  
+&R_{if} =  \frac{R_{in}}{1+A^{'}\beta} = \frac{2.569k\Omega}{1+\frac{-1}{100k\Omega}(-637.786k\frac{V}{A})} =\boxed {348.204\Omega}\nonumber \\
+&R_{of} = \frac{R_{out}}{1+A^{'}\beta} = \frac{62.017\Omega}{1+\frac{-1}{100k\Omega}(-637.786k\frac{V}{A})} =  
 \boxed{8.406\Omega}\nonumber
 \end{flalign}
 
@@ -345,7 +348,7 @@ From this, we can measure the following values:
     \centering
     \begin{tabular}{l|lllll}
         
-     & $w_{L3dB}$ & $w_{H3dB}$ & $R_{in}$ & $R_{out}$ & $A_M$ \\ \cline{1-6}
+     & $w_{L3dB}$ & $w_{H3dB}$ & $R_{in}$ & $R_{out}$ & $A_f$ \\ \cline{1-6}
     Measured & 3.221[$\frac{rad}{s}$] & 4257.361k[$\frac{rad}{s}$] & $240.7\Omega$ & $8.456\Omega$ & 17.248$\frac{V}{V}$ \\ 
     \end{tabular}   
     \caption{Measured Feedback Values}
@@ -362,25 +365,135 @@ Here is all of the different bode plots of various $R_f$ values:
     \centering
     \includegraphics[height=0.4\textwidth]{Images/partcbode1k.png}\\
     \caption{Closed Loop Frequency Response with Different $R_f$ Values}
-    \label{fig:clfreqresponse}
+    \label{fig:clfreqresponsediffvalues}
 \end{figure}
 
-Comparing the values as shown in the previous part, all of the estimates are close to the measured
-values.
+For the calculated values, the calculations were performed the same way it was done in the 
+previous part. Since we need to measure our $\beta$ value however, we can use the following
+equation to use the measured values to solve for our measured $\beta$:
+\begin{flalign}
+&\beta_{measured}= \frac{A_f-A^{'}}{A_fA^{'}}\nonumber
+\end{flalign}
 
+Since our open loop gain is the same value as found in the previous section, we only need to measure
+our $A_f$ values from the bode plot. However, once we measure the gain from the bode plot, we need
+to convert it's values from $\frac{V}{V}$ to $\frac{V}{A}$. We can do this by multiplying the measured
+value by $5k\Omega$, similar to the way it was converted in the previous section. Once we have
+$A_f$ in $\frac{V}{V}$, we can then use that value to calculate our $\beta_{measured}$. The measured 
+and calculated values are shown below:
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lllll}
+  
+    $R_f(\Omega)$ & \begin{tabular}[c]{@{}l@{}}Measured  \\ $A_f(\frac{V}{A})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Measured \\ $\beta$(S)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Calculated \\ $A_f(\frac{V}{A})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Calculated \\ $\beta$(S)\end{tabular} \\ \cline{1-5}
+    1k & -995.5 & -1.003e-3 & -998.435 & -0.001 \\ 
+    10k & -9.820k & -1.0027e-4 & -9.845k & -0.0001 \\
+    100k & -86.240k & -1.0028e-5 & -86.446k & -0.00001 \\
+    1M & -388.995k & -1.0028e-6 & -389.420k & -0.000001 \\
+    10M & -599.425k & -1.0034e-7 & -681.2342k & -0.0000001
+    \end{tabular}
+    \caption{Measured and Calculated Feedback Values}
+    \label{Measuredcalculatedfeedbackvalues}
+\end{table}
+\FloatBarrier
 
+Comparing the calculated values and the measured values, we can see that for each value 
+of $R_f$, the calculated and measured values are mostly accurate to the simulated values.
+We can see that at $R_f=10M\Omega$ that the measured and calculated values are not 
+as close to the simulated values. This could be due to inaccuracies in the simulation, or 
+assumptions in the calculation. 
 
 \subsubsection{Part 4}
+To find the input and output resistance of the amplifier at different values of $R_f$ and 
+at 1kHz, we will be using the same method as done previously to measure each of those values.
+To find the calculated values of the input and output resistance for each $R_f$, we 
+will be using the calculated values of $\beta$ for the corresponding $R_f$ value. We 
+will be using the same formula as done previously to find the measured and calculated
+values of $R_{of}$ and $R_{if}$.
 
+The measured values are shown below:
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lllll}
+    
+    $R_f (\Omega)$ & Measured  $R_{if}(\Omega)$ & Measured $R_{of}(\Omega)$ & Calculated $R_{if}(\Omega)$ & Calculated  $R_{of}(\Omega)$ \\ \cline{1-5}
+    10k & 26.763 & 1.117 & 39.658 & 0.957 \\ 
+    100k & 266.393 & 8.457 & 348.204 & 8.406 \\
+    1M & 2.663k & 37.606 & 1.568k & 37.866
+    \end{tabular}
+    \caption{Measured and Calculated $R_{of}$ and $R_{if}$ Values}
+    \label{measuredcalcrifrof}
+\end{table}
 
+We can see from the table above that the measured and calculated values of $R_{of}$ 
+are very accurate to the measured value. However, we can see that the input impedance
+calculations are not as accurate to the measured values. This could also be due to 
+inaccuracies in the simulation, or assumptions in the calculation.
 
+\subsubsection{Part 5}
+
+From the class notes[1], we find that the de-sensitivity factor is found by 1+$A\beta$. If $R_f = \infty$,
+then, our de-sensitivity factor is 1 since the $A\beta$ portion equates to 0 because in this case, $\beta=\frac
+{1}{\infty}$.
+Simulating for $R_f=\infty$, we find:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}
+    $R_f(\Omega)$ & Measured Gain($\frac{V}{V}$) \\ \hline
+    9.9k & -126.848 \\ 
+    10k & -127.553 \\
+    10.1k & -128.201
+    \end{tabular}
+    \caption{Measured Output with $R_f=\infty$}
+    \label{measuredoutinf}
+\end{table}
+
+Simulating for $R_f=100k\Omega$, we find:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}
+    $R_f(\Omega)$ & Measured Gain($\frac{V}{V}$) \\ \hline
+    9.9k & -17.235 \\ 
+    10k & -17.248 \\
+    10.1k & -17.260
+    \end{tabular}
+    \caption{Measured Output with $R_f=100k\Omega$}
+    \label{measuredout}
+\end{table}
+
+With these values, we can find the de-sensitivity factor for $R_f=100k\Omega$. The values of the 
+gain does not change much for the different values of $R_c$. The de-sensitivity factor is found to be:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}
+    $R_f(\Omega)$ & De-Sensitivity Factor \\ \hline
+    9.9k & 7.3424 \\ 
+    10k & 7.378 \\
+    10.1k & 7.410
+    \end{tabular}
+    \caption{De-Sensitivity Factor}
+    \label{desens}
+\end{table}
+\FloatBarrier
+
+Comparing the gain values from parts 2 and 3, we 
+find that the gain values are very similar to each other. Therefore, we find that this 
+circuit is desensitized. 
 
 \newpage
 \section{Appendix}
+
 \begin{flalign}
-    &k = 3 - \sqrt{2}\\
+    &k = 3 - \sqrt{2} = 1+\frac{R_2}{R_1}\\
+    &A_m = 1+\frac{R_2}{R_1}\\
+    &R_2+R_1=10k\Omega\\
+    &R_1 = \frac{10000}{-\sqrt{2}+3}\Omega\\
+    &R_2 = \frac{1}{7}(-10000\sqrt{2}+40000)\Omega
 \end{flalign}
 \section{References}
 1. ELEC 301 Class notes 
