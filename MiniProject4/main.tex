@@ -289,6 +289,9 @@ $\begin{bmatrix}
     y_{21} && y_{22} 
 \end{bmatrix}$
 \end{center}
+
+In this case, we only need our $\beta$ value from our y-parameters, therefore we can just
+solve for that value
 \subsubsection{Gain Calculations}
 Since our circuit is in shunt-shunt topology, our open-loop will be  $\frac{V_{out}}
 {I_{in}}$. Therefore, we need to convert our input to the amplifier from a voltage source 
@@ -314,7 +317,7 @@ and this can be done by dividing $A_f$ by $5k\Omega$. After doing this, we find
 To calculate the $w_{3dBf}$ (3dB frequencies with feedback), we can use the 
 following formulas from the class notes[1]. The frequencies are found to be:
 \begin{flalign}
-&w_{Hf3dB} = w_{H3dB}(1+A^{'}\beta)  = 91.3083*2\pi*10^3*(1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})) = \boxed{366.476M \frac{rad}{s}}\nonumber\\
+&w_{Hf3dB} = (w_{H3dB})(1+A^{'}\beta) = (91.308k*2\pi)(1+\frac{1}{100k\Omega}637.786k\frac{V}{A}) = \boxed{ 4233.189k \frac{rad}{s}}\nonumber\\
 &w_{Lf3dB} = \frac{w_{L3dB}}{1+A^{'}\beta} = \frac{2.9219 *2\pi}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =\boxed{2.488 \frac{rad}{s}} \nonumber
 \end{flalign}
 
@@ -323,16 +326,55 @@ To calculate our input and output resitance values with feedback, we can
 use our open loop resistance values and formulas[1] to calculate the values
 we eventually find:
 \begin{flalign}
-&R_{if} = R_{in}(1+A^{'}\beta) = 2.569k\Omega(1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})) =\boxed {18.95372234k\Omega}\nonumber \\
+&R_{if} =  \frac{R_{in}}{1+A^{'}\beta} = \frac{2.569k\Omega}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =\boxed {348.204\Omega}\nonumber \\
 &R_{of} = \frac{R_{out}}{1+A^{'}\beta} = \frac{62.017\Omega}{1+\frac{1}{100k\Omega}(637.786k\frac{V}{A})} =  
 \boxed{8.406\Omega}\nonumber
 \end{flalign}
 
 Here is our closed loop frequency response curve:
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/partcfeedbackbode.png}\\
+    \caption{Closed Loop Frequency Response}
+    \label{fig:clfreqresponse}
+\end{figure}
+From this, we can measure the following values:
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l|lllll}
+        
+     & $w_{L3dB}$ & $w_{H3dB}$ & $R_{in}$ & $R_{out}$ & $A_M$ \\ \cline{1-6}
+    Measured & 3.221[$\frac{rad}{s}$] & 4257.361k[$\frac{rad}{s}$] & $240.7\Omega$ & $8.456\Omega$ & 17.248$\frac{V}{V}$ \\ 
+    \end{tabular}   
+    \caption{Measured Feedback Values}
+    \label{Measuredfeedbackvalues}
+\end{table}
+
+Comparing the measured values and the calculated values, we can see that the calculated 
+values are accurate to the measured values. 
 
 \subsection{Part 3}
+From the bottom most trace, the values of $R_f$ are increasing for each increasing curve. 
+Here is all of the different bode plots of various $R_f$ values:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.4\textwidth]{Images/partcbode1k.png}\\
+    \caption{Closed Loop Frequency Response with Different $R_f$ Values}
+    \label{fig:clfreqresponse}
+\end{figure}
+
+Comparing the values as shown in the previous part, all of the estimates are close to the measured
+values.
+
+
+
+
+\subsubsection{Part 4}
+
+
+
 
 
 \newpage
