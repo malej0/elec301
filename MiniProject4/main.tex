@@ -194,8 +194,11 @@ Comparing the calculated and measured frequencies for each modified circuit:
 \end{table}
 \FloatBarrier
 
-We can observe that the calculated and measured values are very close to each other. The way that a phase shift oscillator
-works is that a third order RC circuit is connected behind an amplifier with a negative gain[5]. In this case, the negative feedback
+We can observe that the calculated and measured values are very close to each other. Due to the very low percentage error, 
+we can then conculde that our calculations and the simulation are accurate to each other.
+
+The way that a phase shift oscillator works is that a third order RC circuit is connected behind an amplifier with a negative gain[5]. The reasoning behind using 
+a third order circuit is because this is the lowest order circuit that is able to output a phase shifted signal[5]. In this case, the negative feedback
 is supplied by the 29R resistor, with our OPAMP as our amplifier. The reasoning behind the increase of the 29R resistor, is that our negative gain
 has to be larger than the gain of the input circuit[5]. The gain of the input in this case was represented by the 29R resistor.
 We observed that with just 29R, the output was not sustained, and eventaully decayed to zero. Once the resistor was increased,
