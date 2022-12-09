@@ -153,21 +153,21 @@ the output oscillates as shown:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/partbtransient1x.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/partbtransient1x.png}\\
     \caption{Circuit Output With Unchanged Circuit Elements}
     \label{fig:oscillatorcircuit1x}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/partbtransient0.5x.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/partbtransient0.5x.png}\\
     \caption{Circuit Output With Half Circuit Elements}
     \label{fig:oscillatorcircuit0.5x}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/partbtransient2x.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/partbtransient2x.png}\\
     \caption{Circuit Output With Double Circuit Elements}
     \label{fig:oscillatorcircuit2x}
 \end{figure}
@@ -194,13 +194,18 @@ Comparing the calculated and measured frequencies for each modified circuit:
 \end{table}
 \FloatBarrier
 
-We can observe that the calculated and measured values are very close to each other.
+We can observe that the calculated and measured values are very close to each other. The way that a phase shift oscillator
+works is that a third order RC circuit is connected behind an amplifier with a negative gain[5]. In this case, the negative feedback
+is supplied by the 29R resistor, with our OPAMP as our amplifier. The reasoning behind the increase of the 29R resistor, is that our negative gain
+has to be larger than the gain of the input circuit[5]. The gain of the input in this case was represented by the 29R resistor.
+We observed that with just 29R, the output was not sustained, and eventaully decayed to zero. Once the resistor was increased,
+we observed that the output was stable. 
 
 \section{Part C}
 Below is our Feedback Circuit:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.3\textwidth]{Images/partCcircuit.png}\\
+    \includegraphics[height=0.35\textwidth]{Images/partCcircuit.png}\\
     \caption{Feedback Circuit}
     \label{fig:feedbackcircuit}
 \end{figure}
@@ -209,21 +214,21 @@ Since we want to find the value of $R_{B2}$ that creates the largest open-loop g
 input voltage at 1kHz at 1mV. To find the value, we will be doing a parameter sweep with a transient response to 
 find which resistance value results in the largest gain. We find that after doing the parameter sweep,
 the value $R_{B2}$ to be around \boxed{20k\Omega}. Resistance values above $20k\Omega$
-, we find that the output amplitude decreases. The paramater sweep is shown below:
+, we find that the output amplitude decreases. The parameter sweep is shown below:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[height=0.4\textwidth]{Images/parametersweep.png}\\
+    \includegraphics[height=0.45\textwidth]{Images/parametersweep.png}\\
     \caption{Parameter Sweep with $R_{B2}$ and Transient Response}
     \label{fig:parametersweep}
 \end{figure}
-
+\FloatBarrier
 
 \subsection{Part 1}
 To measure the DC Operating points, we will be using the DC Circuit below:
 \begin{figure}[h!]
     \centering
-    \includegraphics[height=0.25\textwidth]{Images/partCDC.png}\\
+    \includegraphics[height=0.3\textwidth]{Images/partCDC.png}\\
     \caption{Feedback DC Circuit}
     \label{fig:feedbacdccircuit}
 \end{figure}
@@ -292,7 +297,7 @@ $\begin{bmatrix}
     y_{21} && y_{22} 
 \end{bmatrix}$
 \end{center}
-To find the value of $y_{11}$, we set $V_2=0$. Then, we find that \boxed{y_11=\frac{1}{R_f}}
+To find the value of $y_{11}$, we set $V_2=0$. Then, we find that \boxed{y_{11}=\frac{1}{R_f}}
 for our $y_{12}$ parameter, we set $V_1=0$. We also know that $\beta=y_{12}$. It is found as
 \boxed{y_{12}=\beta=\frac{-1}{R_f}}.For $y{21}$, we find that it's effect is small compared
 relative to the other gain values, so we will not consider it in calculations. For $y_{22}$, we 
@@ -344,6 +349,7 @@ Here is our closed loop frequency response curve:
     \caption{Closed Loop Frequency Response}
     \label{fig:clfreqresponse}
 \end{figure}
+\FloatBarrier
 From this, we can measure the following values:
 
 \begin{table}[h!]
@@ -356,7 +362,7 @@ From this, we can measure the following values:
     \caption{Measured Feedback Values}
     \label{Measuredfeedbackvalues}
 \end{table}
-
+\FloatBarrier
 Comparing the measured values and the calculated values, we can see that the calculated 
 values are accurate to the measured values. 
 
@@ -369,6 +375,7 @@ Here is all of the different bode plots of various $R_f$ values:
     \caption{Closed Loop Frequency Response with Different $R_f$ Values}
     \label{fig:clfreqresponsediffvalues}
 \end{figure}
+\FloatBarrier
 
 For the calculated values, the calculations were performed the same way it was done in the 
 previous part. Since we need to measure our $\beta$ value however, we can use the following
@@ -437,16 +444,16 @@ The measured values are shown below:
 For the estimated value, we will be using the measured values from Table \ref{tab:measuredcalcrifrof}. For the predicted 
 values, we will be calculating it with the $\beta$ and $A'$ values that we already know (values from parts 2 and 3).
 
-Amount of feedback measured and calculated values:
+Below is the Amount of feedback measured and calculated values:
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{lll}
-   
-    $R_f(\Omega)$ & \begin{tabular}[c]{@{}l@{}}Predicted\\ A.o.F.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Measured \\ A.o.F\end{tabular} \\ \cline{1-3}
-    10k & 64.779 & 95.991 \\ 
-    100k & 7.37786 & 9.644 \\
-    1M & 1.634 & 0.965
+    \begin{tabular}{llll}
+    
+    $R_f(\Omega)$ & Predicted A.o.F & \begin{tabular}[c]{@{}l@{}}Measured A.o.F \\ (from $R_{if}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Measured \\ A.o.F (from $R_{of}$)\end{tabular} \\ \cline{1-4}
+    10k & 64.7786 & 95.991 & 55.521 \\ 
+    100k & 7.37786 & 9.644 & 7.333 \\
+    1M & 1.637786 & 0.965 & 1.649
     \end{tabular}
     \caption{Measured and Predicted ``Amount of Feedback''}
     \label{aof}
@@ -454,7 +461,10 @@ Amount of feedback measured and calculated values:
 
 We can see that comparing the A.o.F. between the measured and the predicted values, they are more accurate to each other
 as we increase the $R_f$ value. We can determine that because we can see that the differences between the measured and
-predicted continue to decrease as $R_f$ increases. 
+predicted continue to decrease as $R_f$ increases. We can also observe that the A.o.F. from the output resistance is more
+accurate than the value calculated from the input resistance. However, the observation that each value of A.o.F. continues
+to be more accurate as $R_f$ increases is still accurate to both methods of calculating A.o.F.. This could happen due to 
+assumptions in the calculation that is not accounted for compared to the simulation.  
 
 We can also see from table \ref{tab:measuredcalcrifrof}  that the measured and calculated values of $R_{of}$ 
 are very accurate to the measured value. However, we can see that the input impedance
@@ -479,6 +489,7 @@ Simulating for $R_f=\infty$, we find:
     \caption{Measured Output with $R_f=\infty$}
     \label{measuredoutinf}
 \end{table}
+\FloatBarrier
 
 Simulating for $R_f=100k\Omega$, we find:
 
@@ -493,6 +504,7 @@ Simulating for $R_f=100k\Omega$, we find:
     \caption{Measured Output with $R_f=100k\Omega$}
     \label{measuredout}
 \end{table}
+\FloatBarrier 
 
 With these values, we can find the de-sensitivity factor for $R_f=100k\Omega$. The values of the 
 gain does not change much for the different values of $R_c$. The de-sensitivity factor is found to be:
@@ -512,7 +524,9 @@ gain does not change much for the different values of $R_c$. The de-sensitivity 
 
 Comparing the gain values from parts 2 and 3, we 
 find that the gain values are very similar to each other. Therefore, we find that this 
-circuit is desensitized. 
+circuit is desensitized. For smaller values of $R_f$, an observation can be made that the gain is larger at mid band.
+This could occour because the de-sensitivity factor decreases with a smaller $R_f$ value. With the lower de-sensitivity 
+factor, the mid band gain would then be larger; compared to the gain from a larger $R_f$ value. 
 
 \newpage
 \section{Appendix}
@@ -532,6 +546,7 @@ circuit is desensitized.
 3. Standard Resistor and Capacitor Values (Canvas)
 \newline
 4. Circuit Maker SPICE Model
-
+\newline
+5. Sedra, Smith - Microelectronic Circuits 5th Edition
 
 \end{document}
